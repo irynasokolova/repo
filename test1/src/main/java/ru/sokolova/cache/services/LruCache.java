@@ -29,7 +29,7 @@ public class LruCache<K, V> implements Cache<K, V> {
 		Node<K, V> node = new Node<K, V>(k, v);
 		cacheMap.remove(k);
 		cacheMap.put(k, node);
-		System.out.println("Lru cache add node " + node.toString());
+		System.out.println("Lru cache adds node " + node.toString());
 
 	}
 
