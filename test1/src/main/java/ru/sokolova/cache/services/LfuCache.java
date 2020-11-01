@@ -37,7 +37,7 @@ public class LfuCache<K, V> implements Cache<K, V> {
 		}
 
 		cacheMap.put(k, node);
-		System.out.println("Lfu cache add node " + node);
+		System.out.println("Lfu cache adds node " + node);
 	}
 
 

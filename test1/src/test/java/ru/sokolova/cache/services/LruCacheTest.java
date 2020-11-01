@@ -8,9 +8,9 @@ import org.junit.jupiter.api.Test;
 public class LruCacheTest {
 	private static final Integer MAX_SIZE = 4;
 
-	private LruCache<Integer, Integer> lruCache = new LruCache<Integer, Integer>(4);
+	private LruCache<Integer, Integer> lruCache = new LruCache<Integer, Integer>(MAX_SIZE);
 
-	private LfuCache<Integer, Integer> lfuCache = new LfuCache<Integer, Integer>(4);
+	private LfuCache<Integer, Integer> lfuCache = new LfuCache<Integer, Integer>(MAX_SIZE);
 
 	@Test
 	public void testCache() {
@@ -33,7 +33,7 @@ public class LruCacheTest {
 
 		//contains last oversize key 5
 		assertTrue(lruCache.get(5).isPresent() && lruCache.get(5).get().equals(100), "LRU storage doesn't comtains [5-100]");
-		assertTrue(lfuCache.get(5).isPresent() && lfuCache.get(5).get().equals(100), "LFU storage doesn't comtains [1-600]");
+		assertTrue(lfuCache.get(5).isPresent() && lfuCache.get(5).get().equals(100), "LFU storage doesn't comtains [5-100]");
 
 		//LRU lost key number 2, it the earliest, but LFU contains, it counts 2 times
 		assertFalse(lruCache.get(2).isPresent(), "LRU storage comtains [2-200]");
