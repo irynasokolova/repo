@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>ru.sokolova.cache</groupId>
 	<artifactId>caching</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>caching</name>
 	<description>Test issue for lru and lfu cache</description>
 
