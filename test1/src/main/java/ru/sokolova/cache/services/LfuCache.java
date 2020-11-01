@@ -2,7 +2,6 @@ package ru.sokolova.cache.services;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.stereotype.Service;
 
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class LfuCache<K, V> implements Cache<K, V> {
 
 	private Map<K, Node<K, V>> cacheMap = new HashMap<K, Node<K, V>>();
-	private Map<K, Integer> frequencyMap = new ConcurrentHashMap<K, Integer>();
+	private Map<K, Integer> frequencyMap = new HashMap<K, Integer>();
 
 
 	private Integer maxSize;
@@ -29,11 +28,9 @@ public class LfuCache<K, V> implements Cache<K, V> {
 			K keyToRemove = frequencyMap.entrySet().stream().min((entry1, entry2) -> entry1.getValue() > entry2.getValue() ? 1 : -1).get().getKey();
 			cacheMap.remove(keyToRemove);
 			System.out.println("Lfu cache removes node " + keyToRemove);
-
 		}
 		if (frequencyMap.containsKey(k)) {
 			Integer q = frequencyMap.get(k);
-			frequencyMap.remove(k);
 			frequencyMap.put(k, ++q);
 		} else {
 			frequencyMap.put(k, 1);
